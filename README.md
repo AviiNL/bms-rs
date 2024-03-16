@@ -1,6 +1,6 @@
-# BMS-rs
+# BMS Shared Memory
 
-Read BMS memory mapped data in rust
+Read BMS shared memory data
 
 Quick example:
 ```rs
@@ -39,3 +39,4 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 Currently implemented interfaces:
  - `IntellivibeData` (FalconSharedMemoryArea)
  - `FlightData` (FalconIntellivibeSharedMemoryArea)
+ - `StringsData` (FalconSharedMemoryAreaString)

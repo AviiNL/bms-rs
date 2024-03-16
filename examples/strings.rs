@@ -1,4 +1,4 @@
-use bms::StringData;
+use bms_sm::StringData;
 
 fn main() {
     let strings = StringData::read().unwrap();
