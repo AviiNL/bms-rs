@@ -10,6 +10,7 @@ use tokio::time::sleep;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // Wait until the memory-file exists
     let mut mem = IntellivibeData::new();
     loop {
         if mem.is_ok() {
