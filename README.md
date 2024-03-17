@@ -1,10 +1,16 @@
 # BMS Shared Memory
 
+
+[![Crates.io][crates-badge]][crates-url]
+
+[crates-badge]: https://img.shields.io/crates/v/bms-sm.svg
+[crates-url]: https://crates.io/crates/bms-sm
+
 Read BMS shared memory data
 
 Quick example:
 ```rs
-use bms::*;
+use bms_sm::*;
 use std::time::Duration;
 use tokio::time::sleep;
 
