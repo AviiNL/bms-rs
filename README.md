@@ -15,7 +15,7 @@ use std::time::Duration;
 use tokio::time::sleep;
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     // Wait until the memory-file exists
     let mut mem = IntellivibeData::new();
     loop {

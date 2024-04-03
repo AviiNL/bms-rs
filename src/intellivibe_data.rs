@@ -34,7 +34,7 @@ unsafe impl Send for IntellivibeData {}
 unsafe impl Sync for IntellivibeData {}
 
 impl IntellivibeData {
-    pub fn new<'a>() -> Result<MemoryFile<'a, Self>, Box<dyn std::error::Error>> {
+    pub fn new<'a>() -> Result<MemoryFile<'a, Self>, Box<dyn std::error::Error + Send + Sync>> {
         let file = unsafe { MemoryFile::<'a, Self>::new("FalconIntellivibeSharedMemoryArea")? };
         Ok(file)
     }

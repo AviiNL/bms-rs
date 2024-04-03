@@ -37,7 +37,7 @@ where
     /// If the generic struct given does not match the memory layout,
     /// this is probably going to make shit hit the fan
     /// Do not use directly unless you know what you're doing.
-    pub unsafe fn new(name: &'a str) -> Result<Self, Box<dyn std::error::Error>> {
+    pub unsafe fn new(name: &'a str) -> Result<Self, Box<dyn std::error::Error + Send + Sync>> {
         Self::new_with_size(name, size_of::<T>())
     }
 
@@ -48,7 +48,7 @@ where
     pub unsafe fn new_with_size(
         name: &'a str,
         size: usize,
-    ) -> Result<Self, Box<dyn std::error::Error>> {
+    ) -> Result<Self, Box<dyn std::error::Error + Send + Sync>> {
         Self::new_with_offset_and_size(name, 0, size)
     }
 
@@ -60,7 +60,7 @@ where
         name: &'a str,
         offset: usize,
         size: usize,
-    ) -> Result<Self, Box<dyn std::error::Error>> {
+    ) -> Result<Self, Box<dyn std::error::Error + Send + Sync>> {
         let hname: HSTRING = HSTRING::from(name);
         let map = OpenFileMappingW(FILE_MAP_READ.0, false, &hname)?;
 
@@ -114,7 +114,7 @@ impl<'a> RawMemoryFile<'a> {
     pub unsafe fn new_with_size(
         name: &'a str,
         size: usize,
-    ) -> Result<Self, Box<dyn std::error::Error>> {
+    ) -> Result<Self, Box<dyn std::error::Error + Send + Sync>> {
         Self::new_with_offset_and_size(name, 0, size)
     }
 
@@ -126,7 +126,7 @@ impl<'a> RawMemoryFile<'a> {
         name: &'a str,
         offset: usize,
         size: usize,
-    ) -> Result<Self, Box<dyn std::error::Error>> {
+    ) -> Result<Self, Box<dyn std::error::Error + Send + Sync>> {
         let hname: HSTRING = HSTRING::from(name);
         let map = OpenFileMappingW(FILE_MAP_READ.0, false, &hname)?;
 

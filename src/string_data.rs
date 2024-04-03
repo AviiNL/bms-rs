@@ -24,7 +24,7 @@ pub struct StringHeader {
 pub struct StringData;
 
 impl StringData {
-    pub fn read() -> Result<HashMap<StringId, String>, Box<dyn std::error::Error>> {
+    pub fn read() -> Result<HashMap<StringId, String>, Box<dyn std::error::Error + Send + Sync>> {
         let header =
             unsafe { MemoryFile::<StringAreaHeader>::new("FalconSharedMemoryAreaString")? };
 

@@ -238,7 +238,7 @@ unsafe impl Send for FlightData {}
 unsafe impl Sync for FlightData {}
 
 impl FlightData {
-    pub fn new<'a>() -> Result<MemoryFile<'a, Self>, Box<dyn std::error::Error>> {
+    pub fn new<'a>() -> Result<MemoryFile<'a, Self>, Box<dyn std::error::Error + Send + Sync>> {
         let file = unsafe { MemoryFile::<'a, Self>::new("FalconSharedMemoryArea")? };
         Ok(file)
     }
